@@ -1,0 +1,8 @@
+%h1 Current stock data
+- if @data
+  %h2= @data['symbol']
+  %ul
+    - @data.each do |k,v|
+      %li= "#{k}: #{v}"
+
+
