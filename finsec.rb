@@ -21,7 +21,16 @@ class FinYah
     @query = URI::encode("#{@@base_uri}#{q_str}")
   end
 
-  def get
-    HTTParty.get(self.query)
+  def get fresh: false
+    if fresh || @data.nil?
+      @data = HTTParty.get(self.query)['query']['results']['quote']
+    else
+      @data
+    end
+  end
+
+  def parse
   end
 end
+
+
